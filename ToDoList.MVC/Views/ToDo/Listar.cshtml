@@ -1,0 +1,83 @@
+﻿@model ToDoViewModel
+
+@{
+    ViewData["Title"] = "To Do";
+}
+<script src="~/js/Listar.js"></script>
+
+<h2>ToDo</h2>
+
+<div>
+    @using (Html.BeginForm("Listar", "ToDo", FormMethod.Post, new {@class = "form-inline"}))
+    {
+        @Html.ValidationSummary(true)
+        <div class="input-group">
+            <div class=" mb-2 mr-sm-2 mb-sm-0">
+
+                @Html.TextBoxFor(x => x.Descricao, null, new {placeholder = "...a fazer", @class = "form-control"})
+            </div>
+            @Html.ValidationMessageFor(x => x.Descricao, null, new {@class = "text-danger"})
+        </div>
+        <div class="input-group">
+            <div class=" mb-2 mr-sm-2 mb-sm-0">
+                @Html.TextBoxFor(x => x.Data, null, new {placeholder = "01/01/2018", type = "date", @class = "form-control"})
+
+            </div>
+            @Html.ValidationMessageFor(x => x.Data, null, new {@class = "text-danger"})
+        </div>
+        <div class="input-group">
+            <div class=" mb-2 mr-sm-2 mb-sm-0">
+                <button type="submit" class="btn btn-primary">+</button>
+            </div>
+        </div>
+    }
+</div>
+
+<br/><br/>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" style="width: 600px">
+    <li class="nav-item active">
+        <a class="nav-link active" data-toggle="tab" href="#tudo">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#afazer">To Do</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#pronto">Done</a>
+    </li>
+</ul>
+
+<div class="tab-content" style="width: 650px">
+    <div id="tudo" class="tab-pane fade in active">
+        <table id="tableAll" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>Descrição</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="afazer" class="tab-pane fade">
+        <table id="tableAfazer" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="pronto" class="tab-pane fade">
+        <table id="tablePronto" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
